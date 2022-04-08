@@ -1,0 +1,14 @@
+{
+  "name": "lab-1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "VLad Rykov",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^9.2.2"
+  }
+}
