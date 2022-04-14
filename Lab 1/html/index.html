@@ -5,12 +5,42 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="../css/main.css">
     <title>User</title>
 </head>
 <body>
-    <h1>Hello</h1>
-    <div id="test"></div>
+<div class="login-box">
+    <h2>Register</h2>
+    <form id="user-form" method="post" onsubmit="return sendFormValidation()">
+        <div class="user-box">
+            <input type="text" name="username">
+            <label>Username</label>
+        </div>
+        <div class="user-box">
+            <input type="email" name="email">
+            <label>Email</label>
+        </div>
+        <div class="user-box">
+            <input type="password" name="password">
+            <label>Password</label>
+        </div>
+        <div class="user-box">
+            <input type="text" name="securityQuestion">
+            <label>Security question</label>
+        </div>
+        <div class="user-box">
+            <input type="text" name="answer">
+            <label>Answer</label>
+        </div>
+        <button id="user-form-button">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <a href="">Submit</a>
+        </button>
+    </form>
+</div>
 </body>
-<script src="../js/script.js"></script>
+<script type="module" src="../js/script.js"></script>
 </html>
