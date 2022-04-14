@@ -6,7 +6,7 @@ function idCounter() {
 let generateId = idCounter()
 
 
-class User {
+class User{
     constructor(name, email, passwd, securityQuestion = null, answer = null) {
         this._id = generateId()
         this.name = name;
@@ -96,7 +96,6 @@ class User {
     }
 
 }
+User.prototype.allUser=[];
 
-User.prototype.allUser = []
-
-module.exports = User
+export default User;

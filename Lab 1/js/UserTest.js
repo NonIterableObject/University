@@ -1,5 +1,5 @@
-const assert = require('assert')
-const User = require("./User");
+import User from "./User.mjs";
+import * as assert from "assert";
 
 const defaultPassword = "123123123"
 const defaultName = "John"
@@ -75,77 +75,3 @@ it('Test invalid change name', () => {
     assert.strictEqual(user.name, defaultName)
 })
 
-
-
-/*Test change email*/
-it('Test valid change email with correct answer', () => {
-    let user = new User(defaultName, defaultEmail, defaultPassword);
-    user.changeSecurityQuestion("question", "answer")
-    user.changeEmail("test@test.com", "answer")
-    assert.strictEqual(user.email, "test@test.com")
-})
-
-it('Test valid change email with incorrect answer', () => {
-    let user = new User(defaultName, defaultEmail, defaultPassword);
-    user.changeSecurityQuestion("question", "answer")
-    user.changeEmail("test@test.com", "wrong_answer")
-    assert.strictEqual(user.email, defaultEmail)
-})
-
-it('Test invalid change email', () => {
-    let user = new User(defaultName, defaultEmail, defaultPassword);
-    user.changeEmail(null, defaultPassword)
-    assert.strictEqual(user.email, defaultEmail)
-
-    user.changeEmail(undefined, defaultPassword)
-    assert.strictEqual(user.email, defaultEmail)
-})
-
-
-
-/*Test_questionValidation method*/
-it('Test _questionValidation method', () => {
-    let user = new User(defaultName, defaultEmail, defaultPassword);
-    assert.strictEqual(user._questionValidation(user._password), true)
-    assert.strictEqual(user._questionValidation(null), false)
-    this._answer = this._securityQuestion = null
-    user.changeSecurityQuestion("qwe", "qwe")
-    assert.strictEqual(user._questionValidation("qwe"), true)
-})
-
-
-
-/*Test friends functionality*/
-it('Test addFriend method', () => {
-    let user1 = new User("qwe", "qwe", "qwe");
-    let user2 = new User("asd", "asd", "asd");
-    let user3 = new User("zxc", "zxc", "zxc");
-
-    assert.strictEqual(!!user1.friends.length, false);
-
-    user1.addFriend(user2);
-    user1.addFriend(user3);
-    assert.deepStrictEqual(user1.friends, [user2.getInformation(), user3.getInformation()]);
-})
-
-it('Test deleteFriend method', () => {
-    let user1 = new User("qwe", "qwe", "qwe");
-    let user2 = new User("asd", "asd", "asd");
-    let user3 = new User("zxc", "zxc", "zxc");
-
-    user1.addFriend(user2);
-    user1.addFriend(user3);
-    assert.deepStrictEqual(user1.friends, [user2.getInformation(), user3.getInformation()]);
-    user1.deleteFriend(user2)
-    assert.deepStrictEqual(user1.friends, [user3.getInformation()]);
-})
-
-it('Test friends methods with invalid data method', () => {
-    let user1 = new User("qwe", "qwe", "qwe");
-    assert.throws(function () {user1.addFriend(null)}, Error)
-    assert.throws(function () {user1.addFriend(1)}, Error)
-    assert.throws(function () {user1.addFriend("")}, Error)
-    assert.throws(function () {user1.deleteFriend(1)}, Error)
-    assert.throws(function () {user1.deleteFriend("")}, Error)
-    assert.throws(function () {user1.deleteFriend(null)}, Error)
-})
