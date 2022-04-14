@@ -6,6 +6,7 @@
   "scripts": {
     "test": "mocha"
   },
+  "type": "module",
   "author": "VLad Rykov",
   "license": "ISC",
   "devDependencies": {
