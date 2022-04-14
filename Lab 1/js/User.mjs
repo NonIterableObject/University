@@ -9,6 +9,7 @@ let generateId = idCounter()
 class User{
     constructor(name, email, passwd, securityQuestion = null, answer = null) {
         this._id = generateId()
+        this.createdAt = new Date().toLocaleString()
         this.name = name;
         this.email = email;
         this._friends = []
@@ -79,7 +80,8 @@ class User{
     getInformation() {
         return {
             name: this.name,
-            email: this.email
+            email: this.email,
+            createdAt: this.createdAt
         };
     }
 
@@ -92,7 +94,7 @@ class User{
     }
 
     _findUser(user) {
-        return User.prototype.allUser.find((element, index, array) => element._id === user._id)
+        return User.prototype.allUser.find((element) => element._id === user._id)
     }
 
 }
