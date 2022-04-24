@@ -1,5 +1,5 @@
-const assert = require('assert')
-const User = require("./User");
+import User from "./User.mjs";
+import * as assert from "assert";
 
 const defaultPassword = "123123123"
 const defaultName = "John"
