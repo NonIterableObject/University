@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Mocha Tests</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://unpkg.com/mocha/mocha.css" />
+      <script src="https://unpkg.com/chai/chai.js"></script>
+    <style>
+      .button-8 {
+        background-color: #e1ecf4;
+        border-radius: 3px;
+        border: 1px solid #7aa7c7;
+        box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
+        box-sizing: border-box;
+        color: #39739d;
+        cursor: pointer;
+        display: inline-block;
+        font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 1.15385;
+        margin: 20px 20px 0 20px;
+        outline: none;
+        padding: 8px .8em;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: baseline;
+        white-space: nowrap;
+      }
+
+      .button-8:hover,
+      .button-8:focus {
+        background-color: #b3d3ea;
+        color: #2c5777;
+      }
+
+      .button-8:focus {
+        box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+      }
+
+      .button-8:active {
+        background-color: #a0c7e4;
+        box-shadow: none;
+        color: #2c5777;
+      }
+    </style>
+
+  </head>
+  <body>
+    <nav>
+      <a class="button-8" href="index.html">Back</a>
+    </nav>
+
+
+    <script src="https://unpkg.com/mocha/mocha.js"></script>
+
+    <script class="mocha-init">
+      mocha.setup('bdd');
+      mocha.checkLeaks();
+    </script>
+
+    <script type="module" src="../js/UserTest.js"></script>
+
+    <script type="module" class="mocha-exec">
+      mocha.run();
+    </script>
+
+      <div id="mocha"></div>
+
+
+  </body>
+</html>
