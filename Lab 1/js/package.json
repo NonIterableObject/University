@@ -1,0 +1,16 @@
+{
+  "type": "module",
+  "name": "lab-1_2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "User.js",
+  "scripts": {
+    "test": "../node_modules/.bin/mocha -r esm"
+  },
+  "author": "Vlad Rykov",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^9.2.2",
+    "esm": "^3.2.25"
+  }
+}
