@@ -108,7 +108,7 @@ it('Test _questionValidation method', () => {
     let user = new User(defaultName, defaultEmail, defaultPassword);
     assert.strictEqual(user._questionValidation(user._password), true)
     assert.strictEqual(user._questionValidation(null), false)
-    this._answer = this._securityQuestion = null
+    user._answer = user._securityQuestion = null
     user.changeSecurityQuestion("qwe", "qwe")
     assert.strictEqual(user._questionValidation("qwe"), true)
 })
