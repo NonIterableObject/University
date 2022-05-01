@@ -6,40 +6,68 @@ function idCounter() {
 let generateId = idCounter()
 
 
-class User{
-    constructor(name, email, passwd, securityQuestion = null, answer = null) {
-        this._id = generateId()
-        this.createdAt = new Date().toLocaleString()
+class User {
+    constructor(name,
+                email,
+                passwd,
+                age = null,
+                address = null,
+                securityQuestion = null,
+                answer = null,
+                _id = null,
+                createdAt = null,
+                friends = null
+    ) {
+        this._id = _id ? _id : generateId();
+        this.createdAt = createdAt ? createdAt : new Date().toLocaleString();
         this.name = name;
         this.email = email;
-        this._friends = []
+        this.age = age;
+        this.address = address;
+        this._friends = friends ? friends : []
         this._password = passwd.toString();
         this._securityQuestion = securityQuestion;
         this._answer = answer;
-        User.prototype.allUser.push(this);
+        if (_id === null) {
+            window.localStorage.setItem(this._id, JSON.stringify(this));
+        }
     }
 
     get friends() {
         let tempArray = []
-        this._friends.forEach(el => tempArray.push(el.getInformation()))
+        this._friends.forEach(el => tempArray.push(el))
         return tempArray
     }
 
-    addFriend(user) {
-        if (!(user instanceof User)) {
-            throw Error("It`s not a user!")
+    addFriend(user_id) {
+        let userInfo = User.getUser(user_id)
+        if (!(userInfo)) {
+            console.log("User does not exist!")
         }
-        this._friends.push(this._findUser(user))
-        user._friends.push(this)
+        let user = User.serializeUser(userInfo)
+
+        // Add friends
+        this._friends.push(user.getInformation())
+        user._friends.push(this.getInformation())
+
+        // Save changes
+        window.localStorage.setItem(this._id, JSON.stringify(this));
+        window.localStorage.setItem(this._id, JSON.stringify(user));
     }
 
-    deleteFriend(user) {
-        if (!(user instanceof User)) {
-            throw Error("It`s not a user!")
+    deleteFriend(user_id) {
+        let userInfo = User.getUser(user_id)
+        if (!(userInfo)) {
+            console.log("User does not exist!")
         }
+        let user = User.serializeUser(userInfo)
         this._friends = this._friends.filter(function (item) {
             return item._id !== user._id
         })
+
+        // Save changes
+        window.localStorage.setItem(this._id, JSON.stringify(this));
+        window.localStorage.setItem(this._id, JSON.stringify(user));
     }
 
     resetPassword(newPassword) {
@@ -79,7 +107,10 @@ class User{
 
     getInformation() {
         return {
+            _id: this._id,
             name: this.name,
+            age: this.age,
+            address: this.address,
             email: this.email,
             createdAt: this.createdAt
         };
@@ -93,11 +124,28 @@ class User{
         return (this._securityQuestion === null && answer === this._password) || (this._answer === answer && answer !== null);
     }
 
-    _findUser(user) {
-        return User.prototype.allUser.find((element) => element._id === user._id)
+    static getUser(user_id) {
+        try {
+            return JSON.parse(localStorage.getItem(user_id))
+        } catch {
+            throw Error("User does not exists")
+        }
     }
 
+    static serializeUser(data) {
+        return new User(
+            data.name,
+            data.email,
+            data._password,
+            data.age,
+            data.address,
+            data._securityQuestion,
+            data._answer,
+            data._id,
+            data.createdAt,
+            data._friends,
+        )
+    }
 }
-User.prototype.allUser=[];
 
 export default User;

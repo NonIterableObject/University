@@ -1,5 +1,6 @@
 import User from "./User.js";
 let assert = chai.assert;
+// import * as assert from "assert";
 
 const defaultPassword = "123123123"
 const defaultName = "John"
@@ -124,10 +125,8 @@ describe("Test friends functionality", function() {
         let user2 = new User("asd", "asd", "asd");
         let user3 = new User("zxc", "zxc", "zxc");
 
-        assert.strictEqual(!!user1.friends.length, false);
-
-        user1.addFriend(user2);
-        user1.addFriend(user3);
+        user1.addFriend(user2._id);
+        user1.addFriend(user3._id);
         assert.deepStrictEqual(user1.friends, [user2.getInformation(), user3.getInformation()]);
     })
 
@@ -136,19 +135,17 @@ describe("Test friends functionality", function() {
         let user2 = new User("asd", "asd", "asd");
         let user3 = new User("zxc", "zxc", "zxc");
 
-        user1.addFriend(user2);
-        user1.addFriend(user3);
+        user1.addFriend(user2._id);
+        user1.addFriend(user3._id);
         assert.deepStrictEqual(user1.friends, [user2.getInformation(), user3.getInformation()]);
-        user1.deleteFriend(user2)
+        user1.deleteFriend(user2._id)
         assert.deepStrictEqual(user1.friends, [user3.getInformation()]);
     })
 
     it('Test friends methods with invalid data method', () => {
         let user1 = new User("qwe", "qwe", "qwe");
         assert.throws(function () {user1.addFriend(null)}, Error)
-        assert.throws(function () {user1.addFriend(1)}, Error)
         assert.throws(function () {user1.addFriend("")}, Error)
-        assert.throws(function () {user1.deleteFriend(1)}, Error)
         assert.throws(function () {user1.deleteFriend("")}, Error)
         assert.throws(function () {user1.deleteFriend(null)}, Error)
     })
