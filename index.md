@@ -1,10 +1,15 @@
-## Welcome to GitHub Pages
+## JS, КИУКИ-19-7, Рыков В.А.
 
-Lab 1-2: [Click](https://noniterableobject.github.io/University/Lab%201/html/index.html)
+### Lab 1-2: [Click](https://noniterableobject.github.io/University/Lab%201/html/index.html)
 
-Lab 3:
+### Lab 3:
 
-Lab 4:
+### Lab 4:
+
+
+
+==================================
+==============================
 
 You can use the [editor on GitHub](https://github.com/NonIterableObject/University/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
