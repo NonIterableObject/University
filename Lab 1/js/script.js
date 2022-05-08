@@ -1,4 +1,4 @@
-import User from "./User.mjs";
+import User from "./User.js";
 
 
 let userForm = document.querySelector('#user-form');
@@ -38,5 +38,12 @@ window.sendFormValidation = function sendFormValidation() {
 function createUser() {
     let a = userForm.elements[0];
     console.log(a)
+}
+
+window.aaa = function aaa() {
+let user1 = new User("qwe", "qwe", "qwe");
+let user2 = new User("asd", "asd", "asd");
+let user3 = new User("zxc", "zxc", "zxc");
+    console.log(user1._id)
 }
 

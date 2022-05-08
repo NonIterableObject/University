@@ -9,6 +9,15 @@
     <title>User</title>
 </head>
 <body>
+
+<nav>
+    <ul>
+        <li class="nav-bar"><a href="">Register New User</a></li>
+        <li class="nav-bar"><a href="allusers.html">All Users</a></li>
+        <li class="nav-bar"><a href="test.html">Tests</a></li>
+    </ul>
+</nav>
+
 <div class="login-box">
     <h2>Register</h2>
     <form id="user-form" method="post" onsubmit="return sendFormValidation()">
@@ -17,8 +26,16 @@
             <label>Username</label>
         </div>
         <div class="user-box">
+            <input type="number" name="age">
+            <label>Age</label>
+        </div>
+        <div class="user-box">
             <input type="email" name="email">
             <label>Email</label>
+        </div>
+        <div class="user-box">
+            <input type="text" name="address">
+            <label>Address</label>
         </div>
         <div class="user-box">
             <input type="password" name="password">
