@@ -132,7 +132,7 @@ function runAllTest() {
     /*Test friends functionality*/
     describe("Test friends functionality", function () {
         it('Test addFriend method', () => {
-            let user1 = new User("qwe", "qwe", "qwe");
+            let user1 = new User("qqq", "qqq", "qqq");
             let user2 = new User("asd", "asd", "asd");
             let user3 = new User("zxc", "zxc", "zxc");
 
@@ -168,8 +168,6 @@ function runAllTest() {
                 user1.deleteFriend(null)
             }, Error)
         });
-        after(function () {
-            localStorage.clear();
-        });
+
     });
 }
