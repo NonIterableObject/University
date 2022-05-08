@@ -1,13 +1,13 @@
-.list {
-    margin: 20px 0 0;
+.user-list {
+    margin: 20px 0 0 50px;
     padding: 0;
     list-style: none;
     counter-reset: li;
 }
 
-.list li {
-    border: 2px solid #DDDDDD;
-    background: #FAFAFA;
+.user-list li {
+    border: 2px solid #243b55;
+    background: #2c5777;
     position: relative;
     margin-bottom: 20px;
     padding: 16px 10px;
@@ -15,37 +15,37 @@
     transition-duration: 0.4s;
 }
 
-.list li:hover {
+.user-list li:hover {
     z-index: 1;
-    border: 2px solid #ADCEE9;
+    border: 2px solid black;
 }
 
-.list li:before {
-    border: 2px solid #ADCEE9;
+.user-list li:before {
+    border: 2px solid black;
     position: absolute;
     top: -14px;
     padding: 2px 10px;
     font-size: 11px;
     font-weight: bold;
     color: #337AB7;
-    background: #F7FAFD;
+    background: black;
     counter-increment: li;
     content: counter(li);
     -webkit-transition-duration: 0.3s;
     transition-duration: 0.3s;
 }
 
-.list li:hover:before {
+.user-list ul li:hover:before {
     border: 2px solid #337AB7;
     background: #337AB7;
-    color: #FFF;
+    color: black;
     -webkit-transform: translate(-12px, 0);
     -ms-transform: translate(-12px, 0);
     -o-transform: translate(-12px, 0);
     transform: translate(-12px, 0);
 }
 
-.list li:after {
+.user-list li:after {
     content: "";
     position: absolute;
     -webkit-transition-duration: 0.4s;
@@ -53,55 +53,44 @@
     -webkit-transition-property: width;
     transition-property: width;
     z-index: -1;
-    background: #F0F5FB;
+    background: black;
     height: 100%;
     left: 0;
     top: 0;
     width: 0;
 }
 
-.list li:hover:after {
+.user-list li:first-child {
+    margin-top: 10px;
+}
+
+.user-list li:hover:after {
     width: 100%;
 }
 
-.button-8 {
-    background-color: #e1ecf4;
-    border-radius: 3px;
-    border: 1px solid #7aa7c7;
-    box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
-    box-sizing: border-box;
-    color: #39739d;
-    cursor: pointer;
+#buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#buttons .choice-button {
+    margin-right: 4px;
     display: inline-block;
-    font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans", sans-serif;
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 1.15385;
-    margin: 20px 20px 0 20px;
-    outline: none;
-    padding: 8px .8em;
-    position: relative;
-    text-align: center;
+    padding: 5px 10px;
+    font-size: 16px;
     text-decoration: none;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    vertical-align: baseline;
-    white-space: nowrap;
+    overflow: hidden;
+    transition: .5s;
+    letter-spacing: 4px
 }
 
-.button-8:hover,
-.button-8:focus {
-    background-color: #b3d3ea;
-    color: #2c5777;
+#buttons .choice-button {
+    background: brown;
+    color: black;
+    border-radius: 5px;
+    box-shadow: 0 0 5px brown,
+    0 0 25px brown,
+    0 0 10px brown,
+    0 0 2px brown;
 }
 
-.button-8:focus {
-    box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
-}
-
-.button-8:active {
-    background-color: #a0c7e4;
-    box-shadow: none;
-    color: #2c5777;
-}
