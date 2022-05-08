@@ -2,7 +2,6 @@ import User from "./User.js";
 
 
 let userForm = document.querySelector('#user-form');
-let userButton = document.querySelector('#user-form-button');
 
 window.sendFormValidation = function sendFormValidation() {
     if (userForm.username.value === "") {
@@ -10,7 +9,6 @@ window.sendFormValidation = function sendFormValidation() {
         userForm.name.focus();
         return false
     }
-
     if (userForm.email.value === "") {
         alert('Пожалуйста, введите электронный адрес');
         userForm.email.focus();
@@ -31,19 +29,21 @@ window.sendFormValidation = function sendFormValidation() {
         userForm.securityQuestion.focus();
         return false
     }
-    console.log("Success")
+    createUser();
     return true;
 }
 
 function createUser() {
-    let a = userForm.elements[0];
-    console.log(a)
-}
-
-window.aaa = function aaa() {
-let user1 = new User("qwe", "qwe", "qwe");
-let user2 = new User("asd", "asd", "asd");
-let user3 = new User("zxc", "zxc", "zxc");
-    console.log(user1._id)
+    let user = new User(
+        userForm.username.value,
+        userForm.email.value,
+        userForm.password.value,
+        userForm.age.value,
+        userForm.address.value,
+        userForm.securityQuestion.value,
+        userForm.answer.value,
+    )
+    alert("User has been created!")
+    return user;
 }
 
