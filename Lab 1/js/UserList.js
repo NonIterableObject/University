@@ -26,8 +26,11 @@ window.showUserAsList = function showUserAsList() {
     for (let key of localStorageKeys) {
         let user = User.getUser(key);
         const newLiElement = document.createElement('li');
-        newLiElement.style.width = '300px';
-        newLiElement.innerHTML = `<a href="#">id: ${user._id}, name: ${user.name}</a>`;
+        newLiElement.style.width = '400px';
+        newLiElement.innerHTML = `
+            <a href="#">id: ${user._id}, name: ${user.name}</a>
+            <button class="delete-button" name='Delete' value="${user._id}">Удалить</button>
+            <button class="info-button" name='Info' value="${user._id}">Подробнее</button>`;
         userElementList.prepend(newLiElement);
     }
 }
