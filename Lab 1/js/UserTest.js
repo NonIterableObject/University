@@ -17,14 +17,14 @@ function generateName() {
 const defaultPassword = "123123123"
 const defaultName = "John"
 const defaultEmail = "user@com.com"
-//
-// document.addEventListener("DOMContentLoaded", () => {
-//     let isAccept = confirm("If you run tests localStorage will be cleared!");
-//     if (!isAccept) {
-//         history.back();
-//     } else {
-//     }
-// });
+
+document.addEventListener("DOMContentLoaded", () => {
+    let isAccept = confirm("If you run tests localStorage will be cleared!");
+    if (!isAccept) {
+        history.back();
+    } else {
+    }
+});
 runAllTest();
 
 function runAllTest() {
@@ -189,6 +189,9 @@ function runAllTest() {
             assert.throws(function () {
                 user1.deleteFriend(null)
             }, Error)
+        });
+        after(function () {
+           localStorage.clear()
         });
     });
 }

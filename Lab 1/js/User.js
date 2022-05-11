@@ -1,5 +1,3 @@
-localStorage.setItem('idCounter', '0')
-
 function generateId() {
     let id = parseInt(localStorage.getItem('idCounter'));
     let newId = id + 1;

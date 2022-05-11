@@ -1,5 +1,11 @@
 import User from "./User.js";
 
+document.addEventListener("DOMContentLoaded", () => {
+    if (localStorage.getItem('idCounter') === null) {
+        localStorage.setItem('idCounter', '0')
+    }
+});
+
 
 let userForm = document.querySelector('#user-form');
 
