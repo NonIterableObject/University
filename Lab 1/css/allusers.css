@@ -96,7 +96,7 @@
 
 .delete-button {
     background: brown;
-    color: black;
+    color: #e8e500;
     border-radius: 5px;
     box-shadow: 0 0 5px brown,
     0 0 25px brown,
@@ -105,11 +105,14 @@
     padding-left: 5px;
     padding-right: 5px;
     margin-left: 20px;
+    font-family: Comic Sans MS, Comic Sans, cursive;
+    position: absolute;
+    right: 100px;
 }
 
 .info-button {
     background: #45a52a;
-    color: black;
+    color: #00e8e7;
     border-radius: 5px;
     box-shadow: 0 0 5px #2aa530,
     0 0 25px #2aa530,
@@ -117,5 +120,9 @@
     0 0 2px #2aa530;
     padding-left: 5px;
     padding-right: 5px;
-        margin-left: 5px;
+    margin-left: 5px;
+    font-family: Comic Sans MS, Comic Sans, cursive;
+    position: absolute;
+    right: 5px;
+
 }

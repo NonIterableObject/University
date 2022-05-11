@@ -28,7 +28,7 @@ window.showUserAsList = function showUserAsList() {
         const newLiElement = document.createElement('li');
         newLiElement.style.width = '400px';
         newLiElement.innerHTML = `
-            <a href="#">id: ${user._id}, name: ${user.name}</a>
+            <a href="#" onclick="return false">id: ${user._id}, name: ${user.name}</a>
             <button class="delete-button" name='Delete' value="${user._id}">Удалить</button>
             <button class="info-button" name='Info' value="${user._id}">Подробнее</button>`;
         userElementList.prepend(newLiElement);
