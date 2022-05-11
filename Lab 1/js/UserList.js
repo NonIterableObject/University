@@ -2,6 +2,7 @@ import User from "./User.js";
 
 let localStorageKeys = Object.keys(localStorage);
 localStorageKeys.splice(localStorageKeys.indexOf('userListChoice'), 1)
+localStorageKeys.splice(localStorageKeys.indexOf('idCounter'), 1)
 localStorageKeys.sort(function(a,b){
   return parseInt(a) - parseInt(b)
 })

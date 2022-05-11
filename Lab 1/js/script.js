@@ -3,6 +3,13 @@ import User from "./User.js";
 
 let userForm = document.querySelector('#user-form');
 
+function generateId() {
+    let id = parseInt(localStorage.getItem('idCounter'));
+    let newId = id + 1;
+    localStorage.setItem('idCounter', newId.toString());
+    return newId;
+}
+
 window.sendFormValidation = function sendFormValidation() {
     if (userForm.username.value === "") {
         alert('Пожалуйста, введите Ваше имя');
@@ -42,6 +49,7 @@ function createUser() {
         userForm.address.value,
         userForm.securityQuestion.value,
         userForm.answer.value,
+        generateId()
     )
     alert("User has been created!")
     return user;

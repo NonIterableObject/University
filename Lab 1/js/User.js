@@ -1,10 +1,11 @@
-function idCounter() {
-    let id = 1;
-    return () => id++;
+localStorage.setItem('idCounter', '1')
+
+function generateId() {
+    let id = parseInt(localStorage.getItem('idCounter'));
+    let newId = id + 1;
+    localStorage.setItem('idCounter', newId.toString());
+    return newId;
 }
-
-let generateId = idCounter()
-
 
 class User {
     constructor(name,
@@ -25,10 +26,17 @@ class User {
         this.age = age;
         this.address = address;
         this._friends = friends ? friends : []
-        this._password = passwd.toString();
+
+        if (this._passwordValidation(passwd.toString())) {
+            this._password = passwd.toString()
+        } else {
+            alert('Short password!')
+            throw Error('Short password!')
+        }
+
         this._securityQuestion = securityQuestion;
         this._answer = answer;
-        if (_id === null) {
+        if (!window.localStorage.getItem(this._id)) {
             window.localStorage.setItem(this._id, JSON.stringify(this));
         }
     }
@@ -52,7 +60,7 @@ class User {
 
         // Save changes
         window.localStorage.setItem(this._id, JSON.stringify(this));
-        window.localStorage.setItem(this._id, JSON.stringify(user));
+        window.localStorage.setItem(user._id, JSON.stringify(user));
     }
 
     deleteFriend(user_id) {
@@ -67,7 +75,7 @@ class User {
 
         // Save changes
         window.localStorage.setItem(this._id, JSON.stringify(this));
-        window.localStorage.setItem(this._id, JSON.stringify(user));
+        window.localStorage.setItem(user._id, JSON.stringify(user));
     }
 
     resetPassword(newPassword) {
