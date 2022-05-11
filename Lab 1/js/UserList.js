@@ -2,6 +2,10 @@ import User from "./User.js";
 
 let localStorageKeys = Object.keys(localStorage);
 localStorageKeys.splice(localStorageKeys.indexOf('userListChoice'), 1)
+localStorageKeys.sort(function(a,b){
+  return parseInt(a) - parseInt(b)
+})
+
 const userElement = document.querySelector('#user-list');
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -37,7 +41,7 @@ window.showUserAsList = function showUserAsList() {
             <a href="#" onclick="return false">id: ${user._id}, name: ${user.name}</a>
             <button class="delete-button" name='Delete' value="${user._id}">Удалить</button>
             <button class="info-button" name='Info' value="${user._id}">Подробнее</button>`;
-        userElementList.prepend(newLiElement);
+        userElementList.appendChild(newLiElement);
     }
 }
 
