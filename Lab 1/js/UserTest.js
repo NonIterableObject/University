@@ -168,6 +168,9 @@ function runAllTest() {
                 user1.deleteFriend(null)
             }, Error)
         });
+        after(function () {
+            localStorage.clear();
+        });
 
     });
 }
