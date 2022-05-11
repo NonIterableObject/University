@@ -3,13 +3,8 @@
     padding: 0;
 }
 
-html {
-    height: 100%;
-}
-
 body {
     font-family: sans-serif;
-    height: 100vh;
     background: linear-gradient(#141e30, #243b55);
     color: white;
     background-size: 100%;
