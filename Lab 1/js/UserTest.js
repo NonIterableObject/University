@@ -171,6 +171,5 @@ function runAllTest() {
         after(function () {
             localStorage.clear();
         });
-
     });
 }
