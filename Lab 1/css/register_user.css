@@ -82,6 +82,10 @@ li.nav-bar{
   letter-spacing: 4px
 }
 
+#user-form-button {
+  background: black;
+}
+
 .login-box button:hover {
   background: #03e9f4;
   color: #fff;
