@@ -2,7 +2,7 @@
 
 ### Lab 1-2, 5: [Click](https://noniterableobject.github.io/University/Lab%201/html/index.html)
 
-### Lab 3:[Click](https://noniterableobject.github.io/University/Lab_3/index.html)
+### Lab 3: [Click](https://noniterableobject.github.io/University/Lab_3/index.html)
 
 ### Lab 4:
 
