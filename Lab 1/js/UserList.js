@@ -147,17 +147,17 @@ window.getUserInfo = function getUserInfo(user_id) {
 
     // add friends
     let p = document.createElement('p');
-    let userFriendstring = ''
+    let userFriendString = ''
     for (let i of user.friends) {
         let friendUser = User.serializeUser(User.getUser(i['_id']));
         let userInfo = friendUser.getInformation();
-        userFriendstring += `{<br>
+        userFriendString += `{<br>
                 "id": ${userInfo['_id']},<br>
                 "name": ${userInfo['name']},<br>
                 "email": ${userInfo['email']},<br>
                 "created_at": ${userInfo['createdAt']},<br>
             },<br>`
     }
-    p.innerHTML = `<b>friends</b>: <p style="margin-left: 50px">${userFriendstring}</p>`;
+    p.innerHTML = `<b>friends</b>: <p style="margin-left: 50px">${userFriendString}</p>`;
     userInfoDiv.appendChild(p);
 }
