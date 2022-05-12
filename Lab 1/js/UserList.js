@@ -49,7 +49,7 @@ window.showUserAsList = function showUserAsList() {
         newLiElement.innerHTML = `
             <a href="#" onclick="return false">${user.name}</a>
             <button class="delete-button" name='Delete' value="${user._id}" onclick="deleteUser(${user._id})">Удалить</button>
-            <button class="info-button" name='Info' value="${user._id}">Подробнее</button>`;
+            <button class="info-button" name='Info' value="${user._id}" onclick="getUserInfo(${user._id})">Подробнее</button>`;
         userElementList.appendChild(newLiElement);
     }
 }
@@ -113,7 +113,7 @@ window.showUserAsTable = function showUserAsTable() {
         firstButton.style.textAlign = "center";
 
         let secondButton = document.createElement('td');
-        secondButton.innerHTML = `<button class="info-button" name='Info' value="${user._id}">Подробнее</button>`;
+        secondButton.innerHTML = `<button class="info-button" name='Info' value="${user._id}" onclick="getUserInfo(${user._id})">Подробнее</button>`;
         secondButton.style.textAlign = "center";
 
         userElementList.appendChild(firstRaw);
@@ -128,4 +128,36 @@ window.deleteUser = function deleteUser(user_id) {
     let listElement = document.querySelector(`#user-${user_id}`);
     listElement.parentNode.removeChild(listElement);
     localStorage.removeItem(user_id)
+}
+
+window.getUserInfo = function getUserInfo(user_id) {
+    let userInfoDiv = document.querySelector('#user-info')
+    userInfoDiv.innerHTML = '<a href="#" onclick="return false">User info:</a><br><br>';
+
+    let user = User.serializeUser(User.getUser(user_id));
+    let userInfo = user.getInformation();
+    let userPropertyList = Object.getOwnPropertyNames(userInfo)
+
+    for (let val in userInfo) {
+        let p = document.createElement('p');
+        let atrName = val.startsWith('_') ? val.replace('_', ' ') : val
+        p.innerHTML = `<b>${atrName}</b>: ${userInfo[val]}`;
+        userInfoDiv.appendChild(p);
+    }
+
+    // add friends
+    let p = document.createElement('p');
+    let userFriendstring = ''
+    for (let i of user.friends) {
+        let friendUser = User.serializeUser(User.getUser(i['_id']));
+        let userInfo = friendUser.getInformation();
+        userFriendstring += `{<br>
+                "id": ${userInfo['_id']},<br>
+                "name": ${userInfo['name']},<br>
+                "email": ${userInfo['email']},<br>
+                "created_at": ${userInfo['createdAt']},<br>
+            },<br>`
+    }
+    p.innerHTML = `<b>friends</b>: <p style="margin-left: 50px">${userFriendstring}</p>`;
+    userInfoDiv.appendChild(p);
 }

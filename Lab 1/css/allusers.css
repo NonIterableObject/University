@@ -1,3 +1,24 @@
+#users {
+    display: flex;
+}
+
+#user-list {
+    width: 50%;
+    margin-right: 0;
+}
+
+#user-info {
+    position: fixed;
+    top: 100px;
+    right: 650px;
+}
+#user-info b{
+    color: #00e8e7;
+}
+#user-info p{
+    color: coral;
+    font-family: Arial, sans-serif;
+}
 .user-list {
     margin: 20px 0 0 50px;
     padding: 0;
@@ -126,21 +147,22 @@
     margin-left: 100px;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width:50%;
+    width: 50%;
+    color: #e8e500;
 }
 
 #user-table td, #user-table th {
-    border: 1px solid #ddd;
+    border: 1px solid #100f0f;
     padding: 8px;
     width: 15%;
 }
 
 #user-table tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #100f0f;
 }
 
 #user-table tr:hover {
-    background-color: #ddd;
+    background-color: #2c5777;
 }
 
 #user-table th {
