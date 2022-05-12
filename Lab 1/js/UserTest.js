@@ -2,6 +2,10 @@ import User from "./User.js";
 // import * as assert from "assert";  // For local tests
 let assert = chai.assert;  //For browser
 
+const defaultPassword = "123123123"
+const defaultName = "John"
+const defaultEmail = "user@com.com"
+
 function idCounter() {
     let id = 1;
     return () => id++;
@@ -13,23 +17,23 @@ function generateName() {
     return `user_${generateId()}`;
 }
 
-
-const defaultPassword = "123123123"
-const defaultName = "John"
-const defaultEmail = "user@com.com"
-
 document.addEventListener("DOMContentLoaded", () => {
     let isAccept = confirm("If you run tests localStorage will be cleared!");
     if (!isAccept) {
         history.back();
     } else {
+        runAllTest();
     }
 });
-runAllTest();
 
 function runAllTest() {
     /*Test password function*/
     describe("password", function () {
+        before(() => {
+            localStorage.clear();
+            localStorage.setItem('idCounter', '0');
+        });
+
         it('Test valid password', () => {
             let user = new User(generateName(), defaultEmail, defaultPassword);
             user.resetPassword("qweasdzxc")
@@ -189,9 +193,6 @@ function runAllTest() {
             assert.throws(function () {
                 user1.deleteFriend(null)
             }, Error)
-        });
-        after(function () {
-           localStorage.clear()
         });
     });
 }

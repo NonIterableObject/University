@@ -1,15 +1,12 @@
 import User from "./User.js";
-
-let localStorageKeys = Object.keys(localStorage);
-localStorageKeys.splice(localStorageKeys.indexOf('userListChoice'), 1)
-localStorageKeys.splice(localStorageKeys.indexOf('idCounter'), 1)
-localStorageKeys.sort(function(a,b){
-  return parseInt(a) - parseInt(b)
-})
+import user from "./User.js";
 
 const userElement = document.querySelector('#user-list');
 
+window.localStorageKeys = Object.keys(localStorage);
+
 document.addEventListener("DOMContentLoaded", () => {
+    updateKeys();
     if (localStorage.getItem('userListChoice') === '1') {
         showUserAsTable();
     } else {
@@ -23,8 +20,18 @@ function removePrevElement() {
         element.remove()
 }
 
+function updateKeys() {
+    window.localStorageKeys = Object.keys(localStorage);
+    window.localStorageKeys.splice(window.localStorageKeys.indexOf('userListChoice'), 1)
+    window.localStorageKeys.splice(window.localStorageKeys.indexOf('idCounter'), 1)
+    window.localStorageKeys.sort(function (a, b) {
+        return parseInt(a) - parseInt(b)
+    })
+}
+
 // Проходим по всем юзерам
 window.showUserAsList = function showUserAsList() {
+    updateKeys();
     localStorage.setItem('userListChoice', '0');
     removePrevElement();
     // Create ul
@@ -34,19 +41,21 @@ window.showUserAsList = function showUserAsList() {
 
     // Create li
     const userElementList = userElement.querySelector('ul')
-    for (let key of localStorageKeys) {
+    for (let key of window.localStorageKeys) {
         let user = User.getUser(key);
         const newLiElement = document.createElement('li');
         newLiElement.style.width = '400px';
+        newLiElement.id = `user-${user._id}`;
         newLiElement.innerHTML = `
             <a href="#" onclick="return false">${user.name}</a>
-            <button class="delete-button" name='Delete' value="${user._id}">Удалить</button>
+            <button class="delete-button" name='Delete' value="${user._id}" onclick="deleteUser(${user._id})">Удалить</button>
             <button class="info-button" name='Info' value="${user._id}">Подробнее</button>`;
         userElementList.appendChild(newLiElement);
     }
 }
 
 window.showUserAsTable = function showUserAsTable() {
+    updateKeys();
     localStorage.setItem('userListChoice', '1');
     removePrevElement();
     const secondColumnWidth = '9px';
@@ -86,10 +95,11 @@ window.showUserAsTable = function showUserAsTable() {
     thead.appendChild(row_1);
 
     // Create td
-    for (let key of localStorageKeys) {
+    for (let key of window.localStorageKeys) {
         let user = User.getUser(key);
 
         let userElementList = document.createElement('tr');
+        userElementList.id = `user-${user._id}`
 
         let firstRaw = document.createElement('td');
         firstRaw.innerHTML = `${user._id}`
@@ -99,7 +109,7 @@ window.showUserAsTable = function showUserAsTable() {
         secondRaw.style.width = secondColumnWidth;
 
         let firstButton = document.createElement('td');
-        firstButton.innerHTML = `<button class="delete-button" name='Delete' value="${user._id}">Удалить</button>`
+        firstButton.innerHTML = `<button class="delete-button" name='Delete' value="${user._id}" onclick="deleteUser(${user._id})">Удалить</button>`
         firstButton.style.textAlign = "center";
 
         let secondButton = document.createElement('td');
@@ -114,3 +124,8 @@ window.showUserAsTable = function showUserAsTable() {
     }
 }
 
+window.deleteUser = function deleteUser(user_id) {
+    let listElement = document.querySelector(`#user-${user_id}`);
+    listElement.parentNode.removeChild(listElement);
+    localStorage.removeItem(user_id)
+}
