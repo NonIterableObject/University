@@ -135,13 +135,12 @@ window.getUserInfo = function getUserInfo(user_id) {
 
     let user = User.serializeUser(User.getUser(user_id));
     let userInfo = user.getInformation();
-    let userPropertyList = Object.getOwnPropertyNames(userInfo)
 
     for (let val in userInfo) {
-        let p = document.createElement('p');
+        let pInfo = document.createElement('p');
         let atrName = val.startsWith('_') ? val.replace('_', ' ') : val
-        p.innerHTML = `<b>${atrName}</b>: ${userInfo[val]}`;
-        userInfoDiv.appendChild(p);
+        pInfo.innerHTML = `<b>${atrName}</b>: ${userInfo[val]}`;
+        userInfoDiv.appendChild(pInfo);
     }
 
     // add friends
@@ -149,12 +148,12 @@ window.getUserInfo = function getUserInfo(user_id) {
     let userFriendString = ''
     for (let i of user.friends) {
         let friendUser = User.serializeUser(User.getUser(i['_id']));
-        let userInfo = friendUser.getInformation();
+        let userFriendInfo = friendUser.getInformation();
         userFriendString += `{<br>
-                "id": ${userInfo['_id']},<br>
-                "name": ${userInfo['name']},<br>
-                "email": ${userInfo['email']},<br>
-                "created_at": ${userInfo['createdAt']},<br>
+                "id": ${userFriendInfo['_id']},<br>
+                "name": ${userFriendInfo['name']},<br>
+                "email": ${userFriendInfo['email']},<br>
+                "created_at": ${userFriendInfo['createdAt']},<br>
             },<br>`
     }
     p.innerHTML = `<b>friends</b>: <p style="margin-left: 50px">${userFriendString}</p>`;
