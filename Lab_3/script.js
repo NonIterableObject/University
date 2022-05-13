@@ -43,6 +43,7 @@ function getProductItems() {
 
 
 function createProductElements() {
+    alert("Выполняется запрос на сервер, может занять некоторое время!")
     getProductItems()
         .then(allProducts => {
             for (let product of allProducts) {
