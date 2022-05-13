@@ -18,7 +18,7 @@ function generateName() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    let isAccept = confirm("If you run tests localStorage will be cleared!");
+    let isAccept = confirm("Внимание, localsStorage будет очищено. После тестов создадутся тестовые пользователи.");
     if (!isAccept) {
         history.back();
     } else {
