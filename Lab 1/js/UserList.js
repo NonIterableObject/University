@@ -1,5 +1,4 @@
 import User from "./User.js";
-import user from "./User.js";
 
 const userElement = document.querySelector('#user-list');
 
