@@ -23,6 +23,10 @@ function getProductItems() {
         xhr.open('GET', 'https://fakestoreapi.com/products');
         xhr.responseType = 'json';
         xhr.setRequestHeader('Content-Type', 'application/json')
+        xhr.timeout = 30000; // 30 секунд (в миллисекундах)
+        xhr.ontimeout = function () {
+            alert('Запрос превысил максимальное время');
+        }
         xhr.onload = () => {
             if (xhr.status >= 400) {
                 reject(xhr.response)
